@@ -28,6 +28,7 @@ gem "devise", "~> 4.1"
 gem 'will_paginate', '~> 3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'byebug'
+gem 'virtus'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
