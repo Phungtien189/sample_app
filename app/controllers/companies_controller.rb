@@ -6,4 +6,24 @@ class CompaniesController < ApplicationController
 	def show
 	end
 
+	def new
+		@company_form = CompanyForm.new
+	end
+
+	def create
+        @company_form = CompanyForm.new(company_form_params)
+		if @company_form.save
+      		redirect_to root_url, notice: "Created Company"
+      	else
+      		render :new
+    	end
+	end
+
+	private
+
+  # Using strong parameters
+  def company_form_params
+    params.require(:company_form).permit!
+  end
+
 end
