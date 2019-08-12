@@ -1,0 +1,73 @@
+doctype html
+html[lang="en"]
+  head
+    base[href="./"]
+    meta[charset="utf-8"]
+    meta[http-equiv="X-UA-Compatible" content="IE=edge"]
+    meta[name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"]
+    meta[name="description" content="CoreUI - Open Source Bootstrap Admin Template"]
+    meta[name="author" content="Łukasz Holeczek"]
+    meta[name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard"]
+    title
+      | CoreUI Free Bootstrap Admin Template
+    link[rel="icon" type="image/ico" href="./img/favicon.ico" sizes="any"]
+    link[href="node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet"]
+    link[href="node_modules/flag-icon-css/css/flag-icon.min.css" rel="stylesheet"]
+    link[href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet"]
+    link[href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet"]
+    script[async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"]
+    script
+      |  window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); // Shared ID gtag('config', 'UA-118965717-3'); // Bootstrap ID gtag('config', 'UA-118965717-5'); 
+  body.app.header-fixed.sidebar-fixed.aside-menu-fixed.sidebar-lg-show
+    .app-body
+      = render "layouts/sidebar"
+      main.main
+        ol.breadcrumb
+          li.breadcrumb-menu.d-md-down-none
+
+        .container-fluid
+          = search_form_for @q do |f|
+            = f.label :name_cont
+            = f.search_field :name_cont
+            button#reset-input.btn.btn-info[type="button"]
+              | reset input
+            = f.submit
+          h1
+            | Companies
+          table
+            thead
+              tr
+                th
+                  | name
+                th
+                  | code
+            tbody
+              - @companies.each do |company|
+                tr
+                  td
+                    = company.name
+                  td
+                    = company.code
+          = will_paginate @companies
+    footer.app-footer
+      div
+        a[href="https://coreui.io"]
+          | CoreUI
+        span
+          | © 2018 creativeLabs.
+      .ml-auto
+        span
+          | Powered by
+        a[href="https://coreui.io"]
+          | CoreUI
+    script[src="node_modules/jquery/dist/jquery.min.js"]
+    script[src="node_modules/popper.js/dist/umd/popper.min.js"]
+    script[src="node_modules/bootstrap/dist/js/bootstrap.min.js"]
+    script[src="node_modules/pace-progress/pace.min.js"]
+    script[src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"]
+    script[src="node_modules/@coreui/coreui/dist/js/coreui.min.js"]
+    script[src="node_modules/chart.js/dist/Chart.min.js"]
+    script[src="node_modules/@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min.js"]
+    script[src="js/main.js"]
+    script[type="text/javascript"]
+      |  $('#reset-input').click(function(){ $('#q_name_cont').val(''); }); 

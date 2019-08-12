@@ -1,0 +1,60 @@
+.col-md-12[style="margin-top: 230px;"]
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .container
+      .row.justify-content-center
+        .col-md-8
+          .card-group
+            .card.p-4
+              .card-body
+                h1
+                  | Login
+                p.text-muted
+                  | Sign In to your account
+                .input-group.mb-3
+                  .input-group-prepend
+                    span.input-group-text
+                      i.icon-user
+                  .field
+                    = f.number_field :id, autofocus: true, autocomplete: "id", class: "form-control"
+                .input-group.mb-4
+                  .input-group-prepend
+                    span.input-group-text
+                      i.icon-lock
+                  .field
+                    = f.password_field :password, autocomplete: "current-password", class: "form-control"
+                .row
+                  .col-6
+                    .actions
+                      - if devise_mapping.rememberable?
+                        .field
+                          = f.check_box :remember_me
+                          = f.label :remember_me
+                      = f.submit "Log in", class: "form-control btn-primary"
+                  - if controller_name != 'sessions'
+                    = link_to "Log in", new_session_path(resource_name)
+                    br
+                  - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+                    = link_to "Forgot your password?", new_password_path(resource_name)
+                    br
+                  - if devise_mapping.confirmable? && controller_name != 'confirmations'
+                    = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name)
+                    br
+                  - if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
+                    = link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name)
+                    br
+                  - if devise_mapping.omniauthable?
+                    - resource_class.omniauth_providers.each do |provider|
+                      = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider)
+                      br
+            .card.text-white.bg-primary.py-5.d-md-down-none[style="width:44%"]
+              .card-body.text-center
+                div
+                  h2
+                    | Sign up
+                  p
+                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  - if devise_mapping.registerable? && controller_name != 'registrations'
+                    = link_to "Register Now!", new_registration_path(resource_name), class: "btn btn-primary active mt-3"
+                    br
+style[type="text/css"]
+  |  .centered { position: absolute; margin: auto; top: 0; right: 0; bottom: 0; left: 0; } 

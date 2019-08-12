@@ -1,0 +1,20 @@
+.sidebar
+  nav.sidebar-nav
+    ul.nav
+      li.nav-item
+        a.nav-link[href="index.html"]
+          i.nav-icon.icon-speedometer
+          |  Dashboard 
+          span.badge.badge-primary
+            | NEW
+      li.nav-title
+        | Pages
+      li.nav-item
+        = link_to companies_path, class: "nav-link" do
+          i.nav-icon.icon-drop
+          |  Companies 
+      li.nav-item
+        a.nav-link[href="typography.html"]
+          i.nav-icon.icon-pencil
+          |  Typography
+  button.sidebar-minimizer.brand-minimizer[type="button"]
