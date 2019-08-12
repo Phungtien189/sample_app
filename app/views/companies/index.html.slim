@@ -1,0 +1,36 @@
+body.app.header-fixed.sidebar-fixed.aside-menu-fixed.sidebar-lg-show
+  .app-body
+    = render "layouts/sidebar"
+  main.main
+    ol.breadcrumb
+      li.breadcrumb-menu.d-md-down-none
+    .container-fluid
+      = search_form_for @q do |f|
+        = f.label :name_cont
+        = f.search_field :name_cont, class: "form-control"
+        button#reset-input.btn.btn-info[type="button"]
+          | reset input
+        = f.submit
+      = link_to new_company_path, class: "btn btn-primary" do
+        i.fa.fa-plus
+        | Create Company
+      h1
+        | Companies
+      table.table
+        thead
+          tr
+            th scope="col" Name
+            th scope="col" Code
+            th scope="col" Action
+        tbody
+          - @companies.each do |company|
+            tr
+              td
+                = company.name
+              td
+                = company.code
+              td
+                = company.code
+      = will_paginate @companies
+script[type="text/javascript"]
+  |  $('#reset-input').click(function(){ $('#q_name_cont').val(''); }); 

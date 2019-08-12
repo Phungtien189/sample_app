@@ -16394,3 +16394,11 @@ body {
   background-position: right calc(0.375em + 0.1875rem) center;
 }
 /*# sourceMappingURL=style.css.map */
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}

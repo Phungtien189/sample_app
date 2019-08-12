@@ -1,9 +1,8 @@
 class CompaniesController < ApplicationController
 	def index
-		@companies = Company.paginate(:page => params[:page], :per_page => 10).order('created_at desc')
-	end
-
-	def show
+		@q = Company.ransack(params[:q])
+  		@companies = @q.result.paginate(:page => params[:page], :per_page => 10).order('created_at desc')
+  		@user = current_user
 	end
 
 	def new
@@ -11,14 +10,26 @@ class CompaniesController < ApplicationController
 	end
 
 	def create
-        @company_form = CompanyForm.new(company_form_params)
+    @company_form = CompanyForm.new(company_form_params)
 		if @company_form.save
-      		redirect_to root_url, notice: "Created Company"
-      	else
-      		render :new
-    	end
+  		redirect_to root_url, notice: "Created Company"
+  	else
+  		render :new
+		end
 	end
 
+	def destroy
+    @company.destroy
+    redirect_to root_url
+	end
+
+  def show
+    @company = Company.find(params[:id])
+  end
+
+  def update
+  	@company = Company.find(params[:id])
+  end
 	private
 
   # Using strong parameters
