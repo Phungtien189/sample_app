@@ -38,6 +38,7 @@ gem 'jquery-rails'
 gem 'popper_js', '~> 1.14.5'
 gem 'slim-rails'
 gem 'html2slim'
+gem 'remotipart', github: 'jbox-web/remotipart', tag: '1.5.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

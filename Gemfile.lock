@@ -11,6 +11,15 @@ GIT
       i18n
       polyamorous (= 2.1.1)
 
+GIT
+  remote: https://github.com/jbox-web/remotipart.git
+  revision: 3517e0c1eef5b96c0a8bc1c3948a9da2a109fe4c
+  tag: 1.5.0
+  specs:
+    remotipart (1.5.0)
+      rails (>= 5.0)
+      zeitwerk
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -291,6 +300,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 6.0.0.rc2)
   ransack!
+  remotipart!
   sass-rails (~> 5)
   selenium-webdriver
   slim-rails
