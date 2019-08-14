@@ -30,6 +30,7 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'pry-rails'
 gem 'virtus'
 gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'select2-rails', '~> 4.0', '>= 4.0.3'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
