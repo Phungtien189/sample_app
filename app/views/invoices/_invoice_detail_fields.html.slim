@@ -1,8 +1,10 @@
-= f.label :product_id
-= f.number_field :product_id
-= f.label :quantity_order
-= f.number_field :quantity_order
-= f.label :price_each
-= f.number_field :price_each
-= link_to_remove_fields f
-br
+.field
+  = f.label :product_id
+  = f.select :product_id, options_for_select(Product.all.collect{|key| ["#{key.name} $#{key.price}$", key.id]}), {}, {class: "js-product-selector"}
+  = f.label :quantity_order
+  = f.number_field :quantity_order
+  = f.label :price_each
+  = f.number_field :price_each, class: "js-price-input"
+  br
+  p
+    = link_to_remove_fields "remove", f
