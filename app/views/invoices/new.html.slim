@@ -1,15 +1,50 @@
 = form_for @invoice do |f|
   = f.fields_for :invoice_details do |ff|
     = render "invoice_detail_fields", f: ff
-  = link_to_add_fields f, :invoice_details
+    = link_to_add_fields "add", f, :invoice_details
   = f.submit
 br
 br
-select.js-example-basic-single name="state"
-  option value="AL"  Alabama
-  option value="WY"  Wyoming
+javascript:
+  function remove_fields(link) {
+    $(link).prev("input[type=hidden]").val("1");
+    $(link).closest(".field").hide();
+  };
 
+  function add_fields(link, association, content) {
+    var new_id = new Date().getTime();
+    var regexp = new RegExp("new_" + association, "g")
+    $(link).before(content.replace(regexp, new_id));
+  };
 
-script[type="text/javascript"]
-  | $(function() {remove_fields = function(link){$(link).prev('input[type=hidden]').val('1');$(link).closest('fieldset').hide();};$('.add_fields').on('click', function(event){var time = new Date().getTime();var regexp = new RegExp($(this).data('id'), 'g');$(this).before($(this).data('fields').replace(regexp, time));event.preventDefault();})});
-  | $(document).ready(function() {$('.js-example-basic-single').select2();});
+  // $("select[id$='product_id']").change(function(){
+  //   debugger;
+  //   a = this.id.split('_')[4];
+  //   b = this.selectedOptions[0].text.split('$')[1];
+  //   $("input[id$='" + a + "_price_each']").val(b);
+  // })
+  $(document).on('change', '.js-product-selector', function(e){
+    var self = $(e.currentTarget),
+        selectedOption = self.find(':selected');
+    console.log()
+    var price = selectedOption.text().split('$')[1];
+    self.closest('.field').find('.js-price-input').val(price)
+  })
+
+h1
+  | Products
+table.table
+  thead
+    tr
+      th scope="col" Name
+      th scope="col" Price
+      th scope="col" Quantity
+  tbody
+    - @products.each do |product|
+      tr
+        td
+          = product.name
+        td
+          = product.price
+        td
+          = product.quantity
